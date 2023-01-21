@@ -244,7 +244,7 @@ class JobsClient(ClustersClient):
                 acl = acl_conf['access_control_list']
                 # map service principals to their new ids
                 acl = ScimClient.map_service_principals_in_acl(acl, service_principal_app_id_mapping, error_logger)
-                acl_perms = self.build_acl_args(acl, True)
+                acl_perms = self.build_acl_args(acl, error_logger, True)
                 acl_create_args = {'access_control_list': acl_perms}
                 acl_resp = self.patch(api, acl_create_args)
                 if not logging_utils.log_response_error(error_logger, acl_resp) and 'object_id' in acl_conf:
